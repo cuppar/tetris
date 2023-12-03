@@ -1,3 +1,5 @@
+#include "Pieces.h"
+
 char mPieces[7 /*kind*/][4 /*rotation*/][5 /*row*/][5 /*col*/] =
     {
         // Square
@@ -157,7 +159,7 @@ char mPieces[7 /*kind*/][4 /*rotation*/][5 /*row*/][5 /*col*/] =
              {0, 0, 0, 0, 0},
              {0, 0, 0, 0, 0}}}};
 
-int mPiecesInitialPosition[7 /*kind */][4 /* r2otation */][2 /* position */] =
+int mPiecesInitialPosition[7 /*kind */][4 /* rotation */][2 /* position */] =
     {
         /* Square */
         {
@@ -203,7 +205,6 @@ int mPiecesInitialPosition[7 /*kind */][4 /* r2otation */][2 /* position */] =
             {-2, -2}},
 };
 
-
 /*
 ====================================================
 Return the type of a block (0 = no-block, 1 = normal block, 2 = pivot block)
@@ -212,12 +213,43 @@ Parameters:
 
 >> pPiece: Piece to draw
 >> pRotation: 1 of the 4 possible rotations
->> pPiece: Piece to draw
->> pPiece: Piece to draw
+>> pX: Horizontal position in blocks
+>> pY: Vertical position in blocks
 ====================================================
 */
-int GetBlockType(int pPiece, int pRotation, int pX, int pY){
-
+int Pieces::GetBlockType(int pPiece, int pRotation, int pX, int pY)
+{
+    return mPieces[pPiece][pRotation][pX][pY];
 }
-int GetXInitialPosition(int pPiece, int pRotation);
-int GetYInitialPosition(int pPiece, int pRotation);
+
+/*
+======================================
+Returns the horizontal displacement of the piece that has to be applied in order to create it in the
+correct position.
+
+Parameters:
+
+>> pPiece: Piece to draw
+>> pRotation: 1 of the 4 possible rotations
+======================================
+*/
+int Pieces::GetXInitialPosition(int pPiece, int pRotation)
+{
+    return mPiecesInitialPosition[pPiece][pRotation][0];
+}
+
+/*
+======================================
+Returns the vertical displacement of the piece that has to be applied in order to create it in the
+correct position.
+
+Parameters:
+
+>> pPiece: Piece to draw
+>> pRotation: 1 of the 4 possible rotations
+======================================
+*/
+int Pieces::GetYInitialPosition(int pPiece, int pRotation)
+{
+    return mPiecesInitialPosition[pPiece][pRotation][1];
+}
