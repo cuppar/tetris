@@ -1,3 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 project(tetris)
+add_compile_definitions(DOCTEST_CONFIG_DISABLE LINUX)
 add_executable(main main.cpp Pieces.cpp Board.cpp)
+target_include_directories(main PUBLIC /usr/include)

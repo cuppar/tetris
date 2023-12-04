@@ -1,6 +1,6 @@
 #include "Board.h"
 // #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-// #include "doctest.h"
+#include "doctest.h"
 
 /*
 ===================================
@@ -163,11 +163,21 @@ bool Board::IsPossibleMovement(int pX, int pY, int pPiece, int pRotation)
     return true;
 }
 
-// TEST_CASE("testing the add function")
-// {
-//     // Pieces pieces;
-//     // Board board{&pieces, 500};
+TEST_CASE("testing the add function")
+{
+    Pieces pieces;
+    Board board{&pieces, 500};
 
-//     // CHECK(board.IsGameOver() == false);
-//     CHECK(true);
-// }
+    CHECK(board.IsGameOver() == false);
+    CHECK(board.IsFreeBlock(0, 0) == true);
+    CHECK(board.IsFreeBlock(2, 2) == true);
+    CHECK(board.IsFreeBlock(2, 3) == true);
+    CHECK(board.IsFreeBlock(3, 2) == true);
+    CHECK(board.IsFreeBlock(3, 3) == true);
+    board.StorePiece(0, 0, 0, 0);
+    CHECK(board.IsFreeBlock(0, 0) == true);
+    CHECK(board.IsFreeBlock(2, 2) == false);
+    CHECK(board.IsFreeBlock(2, 3) == false);
+    CHECK(board.IsFreeBlock(3, 2) == false);
+    CHECK(board.IsFreeBlock(3, 3) == false);
+}
